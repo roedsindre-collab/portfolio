@@ -1,0 +1,218 @@
+
+/* Grunnleggende */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+  background: #111;
+}
+
+/* Bakgrunn med gradient og animasjon */
+body::before {
+  content: '';
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: linear-gradient(120deg, #006eff, #009628, #ff3c00, #000000);
+  background-size: 400% 400%;
+  z-index: -2;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+}
+
+header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background: #ffffff;
+  color: #111;
+}
+
+/* Hero */
+.hero {
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 6px black;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 4px black;
+}
+
+/* Container for seksjoner */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Nyheter og kamper */
+.news-cards, .match-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.news-cards article, .match-cards article {
+  flex: 1 1 30%;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.news-cards article:hover, .match-cards article:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.2);
+}
+
+.news-cards article a {
+  color: #ffcd00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Om meg */
+.about {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 0 0 12px 12px;
+  margin-top: 40px;
+}
+
+/* Responsivt */
+@media(max-width:768px){
+  .news-cards, .match-cards {
+    flex-direction: column;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+}/* =========================
+   Teknologi-inspirert scrollbar
+========================= */
+
+/* Hele scrollbaren */
+::-webkit-scrollbar {
+  width: 12px; /* tykkelse på scrollbar */
+}
+
+/* Scrollbar-track (bakgrunnen) */
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* mørk bakgrunn */
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+/* Scrollbar-thumb (selve “håndtaket”) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff, #0077ff); /* gradient fra cyan til blå */
+  border-radius: 10px;
+  border: 3px solid #1e1e1e; /* litt padding rundt */
+  transition: background 0.3s ease;
+}
+
+/* Hover-effekt */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffea, #00aaff);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00f0ff #1e1e1e;
+}
+/* =========================
+   Glow-effekt på scrollbaren ved scrolling
+========================= */
+
+body {
+  position: relative;
+}
+
+/* Pseudo-element som glød */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 12px; /* samme som scrollbar */
+  height: 100%;
+  pointer-events: none;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #00f0ff, #0077ff);
+  box-shadow: 0 0 15px #00f0ff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+/* Når du scroller, vis glød */
+body.scrolling::after {
+  opacity: 0.7;
+}
+
+/* JS for å legge på klassen body.scrolling ved scroll */
